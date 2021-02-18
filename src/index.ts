@@ -6,12 +6,14 @@ import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { HelloResolver } from "./resolvers/hello";
 import { PostResolver } from "./resolvers/post";
+import { Post } from "./entities/Post";
 
 const main  = async () => {
     
     const orm = await MikroORM.init(mikroconfig);
     await orm.getMigrator().up();
-    
+    const result = await orm.em.findOne(Post,{_id:2});
+    console.log(result);
     const app = express();
     app.listen(4000),()=>{
         console.log("Hey, app is listening on port 4000");
