@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { Resolver } from "type-graphql";
 import { Query } from "type-graphql";
 
